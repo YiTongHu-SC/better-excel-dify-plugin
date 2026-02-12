@@ -26,14 +26,39 @@ The built-in `Doc Extractor` would convert input `.xlsx` file to markdown table 
 
 ### xlsx → json
 
-- The output is placed in the `text` output field rather than the `json` field in order to preserving the header order.
+- The output is placed in the `json` output field and is always JSON, regardless of single or multiple sheets.
 - All cells are parsed as **string**, no matter what it is.
-- If the uploaded Excel file contains multiple sheets, the plugin will automatically convert it into a JSON object, where each key is the sheet name and the value is the data array of the corresponding sheet.
+- The plugin always outputs a JSON object where each key is the sheet name and the value is the data array of the corresponding sheet.
 
 | Name | Age | Date |
 |------|-----|------|
 | John |  18 |2020/2/20|
 | Doe  |  20 |2020/2/2|
+
+**Output example:**
+
+```json
+{
+  "files": [],
+  "json": [
+    {
+      "Sheet1": [
+        {"Name": "确认按钮", "Select": "UI Icon", "Status": "Not started"},
+        {"Name": "台球", "Select": "GamePlay", "Status": "Not started"},
+        {"Name": "青蛙", "Select": "Character", "Status": "Not started"},
+        {"Name": "关闭按钮", "Select": "UI Icon", "Status": "Not started"}
+      ],
+      "sheet2": [
+        {"Name": "确认按钮", "Select": "UI Icon", "Status": "Not started"},
+        {"Name": "台球", "Select": "GamePlay", "Status": "Not started"},
+        {"Name": "青蛙", "Select": "Character", "Status": "Not started"},
+        {"Name": "关闭按钮", "Select": "UI Icon", "Status": "Not started"}
+      ]
+    }
+  ],
+  "text": ""
+}
+```
 
 
 ![](_assets/e2j_output.png)
